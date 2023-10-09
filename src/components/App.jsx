@@ -1,16 +1,21 @@
+import { NavLink, Route, Routes } from "react-router-dom";
+import css from './App.module.css'
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div>
+      <nav className={css.Header}>
+        <NavLink to="/" className={css.NavElement}>
+          Home
+        </NavLink>
+        <NavLink to="/movies" className={css.NavElement}>
+          Movies
+        </NavLink>
+      </nav>
+      <Routes>
+        <Route path="/" element={<div>Home</div>} />
+        <Route path="/movies" element={<div>Movies</div>} />
+      </Routes>
     </div>
   );
 };
