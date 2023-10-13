@@ -5,6 +5,7 @@ import { getCast } from 'services/getTrendingMovies';
 
 const Cast = () => {
   const { id } = useParams();
+  
   const [cast, setCast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -18,7 +19,7 @@ const Cast = () => {
       try {
         setIsLoading(true);
         const mCast = await getCast(id);
-        console.log(mCast);
+        
         setCast(mCast);
       } catch (error) {
         setError(true);
@@ -42,19 +43,20 @@ const Cast = () => {
           <p>Loading...</p>
         </div>
       )}
-      <ul>
-        {cast.map(actor => {
-          return (
-            <CastItem
-              key={actor.id}
-              character={actor.character}
-              name={actor.name}
-              profile_path={actor.profile_path}
-            />
-          );
-        })}
-        
-      </ul>
+      {cast.length && (
+        <ul>
+          {cast.map(actor => {
+            return (
+              <CastItem
+                key={actor.id}
+                character={actor.character}
+                name={actor.name}
+                profile_path={actor.profile_path}
+              />
+            );
+          })}
+        </ul>
+      )}
     </>
   );
 }

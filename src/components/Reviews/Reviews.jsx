@@ -18,7 +18,7 @@ useEffect(() => {
     try {
       setIsLoading(true);
       const mReview = await getReview(id);
-      console.log(mReview);
+      
       setReview(mReview);
     } catch (error) {
       setError(true);
@@ -42,7 +42,10 @@ useEffect(() => {
           <p>Loading...</p>
         </div>
       )}
-      <ul>
+      {review.length === 0 ? (
+        <p>No review for this movie found</p>
+      ) : (
+        <ul>
           {review.map(author => {
             return (
               <ReviewItem
@@ -53,9 +56,8 @@ useEffect(() => {
             );
           })}
         </ul>
-      
+      )}
     </>
-  
   );
 }
 

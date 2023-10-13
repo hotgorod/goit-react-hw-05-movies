@@ -36,6 +36,14 @@ export const getReview = async (movieId) => {
   const { data } = await authAxios.get(
     `https://api.themoviedb.org/3/movie/${movieId}/reviews`
   );
-  console.log(data.results);
+ 
+  return data.results;
+}
+
+export const getMovieSearch = async (movieName) => {
+  const { data } = await authAxios.get(
+    `https://api.themoviedb.org/3/search/movie?query=${movieName}`
+  );
+
   return data.results;
 }
