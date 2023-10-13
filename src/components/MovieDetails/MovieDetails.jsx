@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink, Route, Routes, useParams } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import Cast from 'components/Cast/Cast';
 import Reviews from 'components/Reviews/Reviews';
 import { getMovie } from 'services/getTrendingMovies';
@@ -7,6 +7,9 @@ import MovieDetailsItem from 'components/MovieDetailsItem/MovieDetailsItem';
 
 const MovieDetails = () => {
   const { id } = useParams();
+  const location = useLocation();
+
+  const backLinkHref = useRef(location.state?.from ?? '/')
   const [movieDetails, setMovieDetails] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -35,6 +38,7 @@ const MovieDetails = () => {
   )
   return (
     <>
+      <Link to={backLinkHref.current}>Go back</Link>
       {error && (
         <div>
           <p>{errorMessage}</p>

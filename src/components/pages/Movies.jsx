@@ -1,10 +1,11 @@
 import MovieItem from 'components/MovieItem/MovieItem';
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { getMovieSearch } from 'services/getTrendingMovies';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
   const [MovieSearch, setMovieSearch] = useState([]); 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -66,7 +67,7 @@ const Movies = () => {
         {MovieSearch !== 0 &&
           MovieSearch.map(movie => {
             return (
-              <MovieItem key={movie.id} title={movie.title} id={movie.id} />
+              <MovieItem key={movie.id} title={movie.title} id={movie.id} location={location} />
             );
           })}
         

@@ -5,7 +5,7 @@ import { getCast } from 'services/getTrendingMovies';
 
 const Cast = () => {
   const { id } = useParams();
-  
+
   const [cast, setCast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -32,6 +32,7 @@ const Cast = () => {
   }, [id]);
   
   return (
+    
     <>
       {error && (
         <div>
