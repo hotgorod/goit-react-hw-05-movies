@@ -4,11 +4,11 @@ import HomePage from './pages/HomePage';
 import Movies from './pages/Movies';
 import Header from './Header/Header';
 import MovieDetails from './MovieDetails/MovieDetails';
-
+import css from './App.module.css'
 
 export const App = () => {
   return (
-    <div>
+    <div className={css.Container}>
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />

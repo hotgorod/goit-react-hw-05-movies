@@ -2,6 +2,7 @@ import MovieItem from 'components/MovieItem/MovieItem';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { getMovieSearch } from 'services/getTrendingMovies';
+import css from './Movie.module.css'
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -21,7 +22,7 @@ const Movies = () => {
       try {
         setIsLoading(true);
         const mSearch = await getMovieSearch(query);
-
+console.log(mSearch);
         setMovieSearch(mSearch);
       } catch (error) {
         setError(true);
@@ -64,13 +65,20 @@ const Movies = () => {
             <p>Loading...</p>
           </div>
         )}
-        {MovieSearch !== 0 &&
-          MovieSearch.map(movie => {
-            return (
-              <MovieItem key={movie.id} title={movie.title} id={movie.id} location={location} />
-            );
-          })}
-        
+        <ul className={css.MovieList}>
+          {MovieSearch !== 0 &&
+            MovieSearch.map(movie => {
+              return (
+                <MovieItem
+                  key={movie.id}
+                  title={movie.title}
+                  id={movie.id}
+                  location={location}
+                  poster_path={movie.poster_path}
+                />
+              );
+            })}
+        </ul>
       </section>
     </>
   );

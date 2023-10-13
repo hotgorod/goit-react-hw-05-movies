@@ -1,6 +1,6 @@
 import MovieList from 'components/MovieList/MovieList';
 import React, { useEffect, useState } from 'react';
-
+import css from './HomePage.module.css'
 import { getTrendingMovies } from 'services/getTrendingMovies';
 
 
@@ -17,6 +17,7 @@ const HomePage = () => {
       try {
         setIsLoading(true);
         const allTrendingMovies = await getTrendingMovies();
+        console.log(allTrendingMovies);
         setTrendingMovies(allTrendingMovies.results);
               
       } catch (error) { 
@@ -35,22 +36,22 @@ const HomePage = () => {
    
     
     return (
-      <>
+      <main>
         {error && (
           <div>
             <p>{errorMessage}</p>
           </div>
         )}
-         {isLoading && (
-        <div>
-          <p>Loading...</p>
-        </div>
-      )}
-        <div>
-          <h2>Trending today</h2>
-         <MovieList trendingMovies={trendingMovies}/>
-        </div>
-      </>
+        {isLoading && (
+          <div>
+            <p>Loading...</p>
+          </div>
+        )}
+        <section className={css.HomePageContainer}>
+          <h1>Trending today</h1>
+          <MovieList trendingMovies={trendingMovies} />
+        </section>
+      </main>
     );
 }
 

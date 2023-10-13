@@ -1,49 +1,49 @@
-import axios from "axios";
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzBkM2RjMGNmMjJjMDliNGI5NDNmNjgwM2ZmZjczMCIsInN1YiI6IjY1MjMwN2RjYWI1ZTM0MDBmZTMyYzlmMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.b0SYdjTLCVBaZ4ILSq2IP-U1xZgGEb11pX7z428YP2w';
+import axios from 'axios';
+const token =
+  'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzBkM2RjMGNmMjJjMDliNGI5NDNmNjgwM2ZmZjczMCIsInN1YiI6IjY1MjMwN2RjYWI1ZTM0MDBmZTMyYzlmMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.b0SYdjTLCVBaZ4ILSq2IP-U1xZgGEb11pX7z428YP2w';
 
 const authAxios = axios.create({
   headers: {
-    Authorization: `Bearer ${token}`
-  }
-})
+    Authorization: `Bearer ${token}`,
+  },
+});
 
 export const getTrendingMovies = async () => {
-    const { data } = await authAxios.get(
-      'https://api.themoviedb.org/3/trending/movie/day?language=en-US',
-    
-  );
- 
-    return data;
-  } 
-
-export const getMovie = async (movieId) => {
   const { data } = await authAxios.get(
-    `https://api.themoviedb.org/3/movie/${movieId}`
+    'https://api.themoviedb.org/3/trending/movie/day?language=en-US'
   );
   
   return data;
-}
+};
 
-export const getCast = async (movieId) => {
+export const getMovie = async movieId => {
+  const { data } = await authAxios.get(
+    `https://api.themoviedb.org/3/movie/${movieId}`
+  );
+
+  return data;
+};
+
+export const getCast = async movieId => {
   const { data } = await authAxios.get(
     `https://api.themoviedb.org/3/movie/${movieId}/credits`
   );
   console.log(data);
   return data.cast;
-}
+};
 
-export const getReview = async (movieId) => {
+export const getReview = async movieId => {
   const { data } = await authAxios.get(
     `https://api.themoviedb.org/3/movie/${movieId}/reviews`
   );
- 
-  return data.results;
-}
 
-export const getMovieSearch = async (movieName) => {
+  return data.results;
+};
+
+export const getMovieSearch = async movieName => {
   const { data } = await authAxios.get(
     `https://api.themoviedb.org/3/search/movie?query=${movieName}`
   );
 
   return data.results;
-}
+};
