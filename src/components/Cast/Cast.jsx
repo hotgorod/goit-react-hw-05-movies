@@ -2,6 +2,7 @@ import CastItem from 'components/CastItem/CastItem';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCast } from 'services/getTrendingMovies';
+import css from './Cast.module.css'
 
 const Cast = () => {
   const { id } = useParams();
@@ -44,7 +45,7 @@ const Cast = () => {
         </div>
       )}
       {cast.length > 0 && (
-        <ul>
+        <ul className={css.CastList}>
           {cast.map(actor => {
             return (
               <CastItem
