@@ -28,7 +28,7 @@ export const getCast = async movieId => {
   const { data } = await authAxios.get(
     `https://api.themoviedb.org/3/movie/${movieId}/credits`
   );
-  console.log(data);
+  
   return data.cast;
 };
 
