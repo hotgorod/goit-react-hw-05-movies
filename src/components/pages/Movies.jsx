@@ -41,18 +41,23 @@ console.log(mSearch);
   };
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <input
-            name="searchMovie"
-            type="text"
-            autoComplete="off"
-            autoFocus
-            placeholder="Search movies..."
-            required
-          />
-        </label>
-        <button type="submit">Search</button>
+      <form className={css.SearchForm} onSubmit={handleSubmit}>
+      
+          <label>
+            <input
+              className={css.SearchInput}
+              name="searchMovie"
+              type="text"
+              autoComplete="off"
+              autoFocus
+              placeholder="Search movies..."
+              required
+            />
+          </label>
+          <button className={css.SearchButton} type="submit">
+            Search
+          </button>
+        
       </form>
       <section>
         {error && (

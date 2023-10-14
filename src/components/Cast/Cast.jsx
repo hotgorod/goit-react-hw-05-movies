@@ -19,7 +19,7 @@ const Cast = () => {
       try {
         setIsLoading(true);
         const mCast = await getCast(id);
-        
+
         setCast(mCast);
       } catch (error) {
         setError(true);
@@ -30,9 +30,8 @@ const Cast = () => {
     }
     fetchCast();
   }, [id]);
-  
+
   return (
-    
     <>
       {error && (
         <div>
@@ -44,7 +43,7 @@ const Cast = () => {
           <p>Loading...</p>
         </div>
       )}
-      {cast.length && (
+      {cast.length > 0 && (
         <ul>
           {cast.map(actor => {
             return (
@@ -60,6 +59,6 @@ const Cast = () => {
       )}
     </>
   );
-}
+};
 
 export default Cast;

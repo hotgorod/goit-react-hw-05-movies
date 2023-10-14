@@ -1,7 +1,39 @@
 .MovieList {
   list-style-type: none;
-  
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
+}
+.SearchInput{
+    
+    margin-right: 14px;
+ 
+    min-width: 300px;
+    height: 30px;
+    border-radius: 5px;
+    border-color: lightgray;
+}
+.SearchForm{
+    display:flex;
+    margin-top: 24px;
+    align-items: center;
+    justify-content: center;
+}
+
+.SearchButton{
+
+  background: orange;
+  border-radius: 5px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 8px 20px 8px 20px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.SearchButton:hover {
+  background: #fdea3c;
+  text-decoration: none;
 }

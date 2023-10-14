@@ -1,9 +1,10 @@
 import React from 'react';
+import css from './MovieDetailsItem.module.css'
 const baseImageUrl = 'https://image.tmdb.org/t/p/w300';
 const MovieDetailsItem = ({ poster_path, title, overview, genres }) => {
     
   return (
-    <div>
+    <div className={css.MovieDetailsItem}>
       <div>
         <img src={`${baseImageUrl}${poster_path}`} alt="" />
       </div>
@@ -12,16 +13,11 @@ const MovieDetailsItem = ({ poster_path, title, overview, genres }) => {
         <h3>Overview</h3>
         <p>{overview}</p>
         <h4>Genres</h4>
-          <ul>
-      {genres.map(genre => {
-          return (
-            <li key = {genre.name}>
-              
-              {genre.name}
-            </li>
-          );
-      })}
-    </ul>   
+        <ul>
+          {genres.map(genre => {
+            return <li key={genre.name}>{genre.name}</li>;
+          })}
+        </ul>
       </div>
     </div>
   );

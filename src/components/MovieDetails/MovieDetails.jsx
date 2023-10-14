@@ -4,6 +4,7 @@ import Cast from 'components/Cast/Cast';
 import Reviews from 'components/Reviews/Reviews';
 import { getMovie } from 'services/getTrendingMovies';
 import MovieDetailsItem from 'components/MovieDetailsItem/MovieDetailsItem';
+import css from './MovieDetails.module.css'
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -38,7 +39,9 @@ const MovieDetails = () => {
   )
   return (
     <>
-      <Link to={backLinkHref.current}>Go back</Link>
+      <Link className={css.GoBackLink} to={backLinkHref.current}>
+        <button className={css.ButtonBack}>&#8678; Go back</button>
+      </Link>
       {error && (
         <div>
           <p>{errorMessage}</p>
@@ -49,7 +52,7 @@ const MovieDetails = () => {
           <p>Loading...</p>
         </div>
       )}
-      <div>
+      <section>
         {movieDetails.poster_path && (
           <MovieDetailsItem
             id={movieDetails.id}
@@ -74,7 +77,7 @@ const MovieDetails = () => {
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Routes>
-      </div>
+      </section>
     </>
   );
 };
