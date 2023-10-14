@@ -1,10 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import { Link, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom';
-import Cast from 'components/Cast/Cast';
-import Reviews from 'components/Reviews/Reviews';
+// import Cast from 'components/Cast/Cast';
+// import Reviews from 'components/Reviews/Reviews';
 import { getMovie } from 'services/getTrendingMovies';
 import MovieDetailsItem from 'components/MovieDetailsItem/MovieDetailsItem';
 import css from './MovieDetails.module.css'
+
+const Reviews = lazy(() => import('../../components/Reviews/Reviews'));
+const Cast = lazy(() => import('../../components/Cast/Cast'));
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -73,10 +76,12 @@ const MovieDetails = () => {
             </li>
           </ul>
         </div>
-        <Routes>
-          <Route path="cast" element={<Cast />} />
-          <Route path="reviews" element={<Reviews />} />
-        </Routes>
+        <Suspense fallback='Loading...'>
+          <Routes>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Routes>
+        </Suspense>
       </section>
     </>
   );

@@ -2,12 +2,12 @@ import MovieItem from 'components/MovieItem/MovieItem';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { getMovieSearch } from 'services/getTrendingMovies';
-import css from './Movie.module.css'
+import css from './Movie.module.css';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
-  const [MovieSearch, setMovieSearch] = useState([]); 
+  const [MovieSearch, setMovieSearch] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState(
@@ -22,7 +22,7 @@ const Movies = () => {
       try {
         setIsLoading(true);
         const mSearch = await getMovieSearch(query);
-console.log(mSearch);
+        
         setMovieSearch(mSearch);
       } catch (error) {
         setError(true);
@@ -42,22 +42,20 @@ console.log(mSearch);
   return (
     <>
       <form className={css.SearchForm} onSubmit={handleSubmit}>
-      
-          <label>
-            <input
-              className={css.SearchInput}
-              name="searchMovie"
-              type="text"
-              autoComplete="off"
-              autoFocus
-              placeholder="Search movies..."
-              required
-            />
-          </label>
-          <button className={css.SearchButton} type="submit">
-            Search
-          </button>
-        
+        <label>
+          <input
+            className={css.SearchInput}
+            name="searchMovie"
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search movies..."
+            required
+          />
+        </label>
+        <button className={css.SearchButton} type="submit">
+          Search
+        </button>
       </form>
       <section>
         {error && (
